@@ -7,3 +7,5 @@ lazy val root = (project in file("."))
     name := "seminarGraphx",
     idePackagePrefix := Some("de.seminar.graphx")
   )
+
+libraryDependencies += "org.apache.spark" %% "spark-graphx" % "3.4.0"
