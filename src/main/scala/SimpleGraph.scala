@@ -32,14 +32,21 @@ object SimpleGraph {
         Edge(5L, 6L, "Freunde")))
     val graph = Graph(users, relationships)
 
-
+    // Example 1
     val marriedCount = graph.edges
       .filter { case Edge(_, _, relation) => relation == "Verheiratet" }
       .count
     println(s"Wie viele Verheiratete Paare sind im Graph? Antwort: ${marriedCount}")
 
-    graph.triplets.map(triplet => triplet.srcAttr + " ist verbunden als " + triplet.attr + " mit " + triplet.dstAttr)
+    // Example 2
+    graph.triplets.map(triplet =>
+      triplet.srcAttr + " ist verbunden als " + triplet.attr + " mit " + triplet.dstAttr)
       .foreach(println)
 
+    // Example 3
+    val triCounts = graph.triangleCount().vertices
+    val triCountByUsername = users.join(triCounts)
+      .map { case (id, (username, tc)) => (username, tc)}
+    println(triCountByUsername.collect().mkString("\n"))
   }
 }
