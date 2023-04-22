@@ -36,7 +36,7 @@ object SimpleGraph {
     val marriedCount = graph.edges
       .filter { case Edge(_, _, relation) => relation == "Verheiratet" }
       .count
-    println(s"Wie viele Verheiratete Paare sind im Graph? Antwort: ${marriedCount}")
+    println(s"Wie viele Verheiratete Paare sind im Graph? Antwort: $marriedCount")
 
     println("\nBeispiel 2")
     graph.triplets.map(triplet =>

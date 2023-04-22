@@ -7,7 +7,7 @@ object TriangleCount {
   def main(args: Array[String]): Unit = {
     val sc = new SparkContext("local", "seminar graphx")
 
-    val graph = GraphLoader.edgeListFile(sc, "src/main/resources/exampleGraph/followers.txt", true)
+    val graph = GraphLoader.edgeListFile(sc, "src/main/resources/exampleGraph/followers.txt", canonicalOrientation = true)
       .partitionBy(PartitionStrategy.RandomVertexCut)
     val triCounts = graph.triangleCount().vertices
 
