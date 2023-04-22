@@ -7,7 +7,7 @@ import org.apache.spark.rdd.RDD
 object SimpleGraph {
 
   def main(args: Array[String]): Unit = {
-    val sc = new SparkContext("local[*]", "seminar graphx")
+    val sc = new SparkContext("local", "seminar graphx")
     sc.setLogLevel("ERROR")
 
     val users: RDD[(VertexId, String)] = sc.parallelize(
@@ -46,7 +46,7 @@ object SimpleGraph {
     println("\nBeispiel 3")
     val triCounts = graph.triangleCount().vertices
     val triCountByUsername = users.join(triCounts)
-      .map { case (id, (username, tc)) => (username, tc)}
+      .map { case (_, (username, tc)) => (username, tc)}
     println(triCountByUsername.collect().mkString("\n"))
   }
 }
